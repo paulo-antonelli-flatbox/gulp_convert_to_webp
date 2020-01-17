@@ -3,6 +3,8 @@ const imagemin = require("gulp-imagemin");
 const webp = require("gulp-webp");
 const del = require('del');
 const rename = require("gulp-rename");
+
+const conditionalDeleteDir = require('./enviorment').deleteDir;
 const srcEnviorment = require('./enviorment').src;
 const distEnviorment = require('./enviorment').dist;
 
@@ -11,10 +13,15 @@ let dest = `${distEnviorment}/images`;
 
 gulp.task("build", function () {
     (async () => {
-        const deletedPaths = await del([`./${distEnviorment}`]);
-        console.log(`Limpando diretorio ~~> ${deletedPaths.join('\n')}`);
-        console.log(`Otimizando imagens aguarde...`);
-        return;
+        if (conditionalDeleteDir === true) {
+            const deletedPaths = await del([`./${distEnviorment}`]);
+            console.log(`Limpando diretorio ~~> ${deletedPaths.join('\n')}`);
+            console.log(`Otimizando imagens aguarde...`);
+            return;
+        } else {
+            console.log(`Otimizando imagens aguarde...`);
+            return;
+        }
     })()
     return gulp.src(src)
         .pipe(
