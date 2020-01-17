@@ -9,7 +9,7 @@ const srcEnviorment = require('./enviorment').src;
 const distEnviorment = require('./enviorment').dist;
 
 let src = `${srcEnviorment}/**/*.*`;
-let dest = `${distEnviorment}/images`;
+let dest = `${distEnviorment}/`;
 
 gulp.task("build", function () {
     (async () => {

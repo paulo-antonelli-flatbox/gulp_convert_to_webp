@@ -1,4 +1,4 @@
-const src = "src/images";
+const src = "src";
 exports.src = src;
 
 const dist = "dist";
